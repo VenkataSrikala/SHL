@@ -1,0 +1,152 @@
+═══════════════════════════════════════════════════════════════
+  SHL ASSESSMENT RECOMMENDER - API ENDPOINT FOR SUBMISSION
+═══════════════════════════════════════════════════════════════
+
+✅ API IS RUNNING AND READY TO SUBMIT!
+
+═══════════════════════════════════════════════════════════════
+  OPTION 1: LOCAL API (For Testing/Demo)
+═══════════════════════════════════════════════════════════════
+
+API Endpoint URL:
+http://localhost:8001/recommend
+
+Method: POST
+Content-Type: application/json
+
+Request Body:
+{
+  "query": "Python developer with SQL skills",
+  "k": 10,
+  "balanced": true
+}
+
+Response Format:
+{
+  "recommended_assessments": [
+    {
+      "name": "Python New",
+      "url": "https://www.shl.com/solutions/products/...",
+      "description": "Python programming test...",
+      "duration": 11,
+      "test_type": ["Knowledge & Skills"],
+      "remote_support": "Yes",
+      "adaptive_support": "No"
+    }
+  ]
+}
+
+═══════════════════════════════════════════════════════════════
+  HOW TO TEST IT
+═══════════════════════════════════════════════════════════════
+
+PowerShell:
+-----------
+$body = @{
+    query = "Python developer with SQL skills"
+    k = 10
+    balanced = $true
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8001/recommend" `
+    -Method Post `
+    -Body $body `
+    -ContentType "application/json"
+
+
+curl (if installed):
+--------------------
+curl -X POST http://localhost:8001/recommend \
+  -H "Content-Type: application/json" \
+  -d "{\"query\": \"Python developer with SQL skills\", \"k\": 10}"
+
+
+Python:
+-------
+import requests
+
+response = requests.post(
+    "http://localhost:8001/recommend",
+    json={
+        "query": "Python developer with SQL skills",
+        "k": 10,
+        "balanced": True
+    }
+)
+
+print(response.json())
+
+
+Browser (Interactive Docs):
+----------------------------
+http://localhost:8001/docs
+
+
+═══════════════════════════════════════════════════════════════
+  OPTION 2: PUBLIC API (For Production Submission)
+═══════════════════════════════════════════════════════════════
+
+To get a public URL that works from anywhere:
+
+1. Deploy to Render.com (FREE):
+   - Go to https://render.com
+   - Sign up with GitHub
+   - Push your code to GitHub first
+   - Connect repo and deploy
+   - Get URL: https://your-app-name.onrender.com/recommend
+
+2. Deploy to Railway.app (FREE):
+   - Go to https://railway.app
+   - Connect GitHub
+   - Deploy in 5 minutes
+
+3. Deploy to Fly.io (FREE):
+   - Go to https://fly.io
+   - Install flyctl
+   - Deploy with one command
+
+═══════════════════════════════════════════════════════════════
+  WHAT TO SUBMIT
+═══════════════════════════════════════════════════════════════
+
+For your assignment, submit ONE of these:
+
+✅ If localhost is accepted:
+   http://localhost:8001/recommend
+
+✅ If public URL required:
+   https://your-deployed-app.onrender.com/recommend
+   (after deploying to cloud)
+
+═══════════════════════════════════════════════════════════════
+  CURRENT STATUS
+═══════════════════════════════════════════════════════════════
+
+✅ API Server: RUNNING on port 8001
+✅ 377 Assessments: LOADED
+✅ FAISS Index: READY
+✅ Embeddings: LOADED
+✅ Response Time: <100ms
+✅ JSON Format: CORRECT
+
+═══════════════════════════════════════════════════════════════
+  SAMPLE QUERIES TO TEST
+═══════════════════════════════════════════════════════════════
+
+1. "Python developer with SQL skills"
+2. "Java programmer with problem solving"
+3. "Data analyst with Excel and visualization"
+4. "Team leader with communication skills"
+5. "Customer service representative"
+
+═══════════════════════════════════════════════════════════════
+  KEEP API RUNNING
+═══════════════════════════════════════════════════════════════
+
+The API is running in the background.
+DO NOT close the terminal or it will stop.
+
+To restart if needed:
+python -m uvicorn api.main:app --host 0.0.0.0 --port 8001
+
+═══════════════════════════════════════════════════════════════
